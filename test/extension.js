@@ -9,17 +9,25 @@ describe('extender', function() {
       done();
     })
 
-    it('should throw an exception if given a null or undefined property to extend', function(done) {
+    it('should throw an exception if given a null or undefined extension object', function(done) {
       expect(ext.register.bind(this, String.prototype, null)).to.throw(Error);
       expect(ext.register.bind(this, String.prototype, undefined)).to.throw(Error);
       done();
     })
 
+    it('should do nothing if passed an empty extension object', function(done) {
+      var obj = {};
+      ext.register(obj, {});
+      ext.use(obj);
+      expect(Object.keys(obj)).to.be.empty;
+      done();
+    });
+
     it('should create a new empty set of extensions the first time an object is extended', function(done) {
       var obj = {};
       var exts = ext.find(obj);
       expect(exts).to.be.undefined;
-      ext.register(obj, 'hello', true);
+      ext.register(obj, { hello: true });
       exts = ext.find(obj);
       expect(exts).to.have.keys('hello');
       done();
@@ -27,8 +35,8 @@ describe('extender', function() {
 
     it('should register the extension given valid arguments', function(done) {
       var obj = {};
-      ext.register(obj, 'hello', true);
-      ext.register(obj, 'goodbye', true);
+      ext.register(obj, { hello: true });
+      ext.register(obj, { goodbye: true });
       var exts = ext.find(obj);
       expect(Object.keys(exts)).to.have.length(2);
       expect(exts).to.have.keys('hello', 'goodbye');
@@ -53,8 +61,8 @@ describe('extender', function() {
 
     it('should return the registered extensions as an object', function(done) {
       var obj = {};
-      ext.register(obj, 'hello', true);
-      ext.register(obj, 'goodbye', true);
+      ext.register(obj, { hello: true });
+      ext.register(obj, { goodbye: true });
       var exts = ext.find(obj);
       expect(Object.keys(exts)).to.have.length(2);
       expect(exts).to.have.keys('hello', 'goodbye');
@@ -72,17 +80,11 @@ describe('extender', function() {
       done();
     })
 
-    it('should throw an exception if given a null or undefined array of property extensions to use', function(done) {
-      expect(ext.use.bind(this, {}, null)).to.throw(Error);
-      expect(ext.use.bind(this, {}, undefined)).to.throw(Error);
-      done();
-    })
-
     it('should permantly apply an extension to an object if not passed a scoping function', function(done) {
       var obj = {};
-      ext.register(obj, 'hello', function() {
+      ext.register(obj, { hello: function() {
         done();
-      });
+      }});
       expect(obj.hello).to.be.undefined;
       ext.use(obj, 'hello');
       expect(obj.hello).not.to.be.undefined;
@@ -92,9 +94,9 @@ describe('extender', function() {
     it('should remove used extensions from an object after the scoping function has executed', function(done) {
       var obj = {};
       var run = false;
-      ext.register(obj, 'hello', function() {
+      ext.register(obj, { hello: function() {
         run = true;
-      });
+      }});
       expect(obj.hello).to.be.undefined;
       ext.use(obj, 'hello', function() {
         obj.hello();
@@ -108,7 +110,7 @@ describe('extender', function() {
       var obj = {
         hello: true
       };
-      ext.register(obj, 'hello', false);
+      ext.register(obj, { hello: false });
 
       ext.use(obj, 'hello');
       expect(obj.hello).to.be.true;
@@ -123,17 +125,44 @@ describe('extender', function() {
       var runHello = false;
       var runWorld = false;
 
-      ext.register(obj, 'hello', function() {
+      ext.register(obj, { hello: function() {
         runHello = true;
-      });
-      ext.register(obj, 'world', function() {
+      }});
+      ext.register(obj, { world: function() {
         runWorld = true;
-      });
+      }});
 
       expect(obj.hello).to.be.undefined;
       expect(obj.world).to.be.undefined;
 
       ext.use(obj, ['hello', 'world'], function() {
+        obj.hello();
+        obj.world();
+      });
+
+      expect(obj.hello).to.be.undefined;
+      expect(obj.world).to.be.undefined;
+      expect(runHello).to.be.true;
+      expect(runWorld).to.be.true;
+      done();
+    })
+
+    it('should use all registered extensions if none are specified', function(done) {
+      var obj = {};
+      var runHello = false;
+      var runWorld = false;
+
+      ext.register(obj, { hello: function() {
+        runHello = true;
+      }});
+      ext.register(obj, { world: function() {
+        runWorld = true;
+      }});
+
+      expect(obj.hello).to.be.undefined;
+      expect(obj.world).to.be.undefined;
+
+      ext.use(obj, function() {
         obj.hello();
         obj.world();
       });
