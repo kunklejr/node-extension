@@ -1,0 +1,23 @@
+{
+  "name": "extension",
+  "description": "Helpful object extensions that can be selectively applied and extended.",
+  "version": "0.0.1",
+  "author": "Jeff Kunkle <jeff.kunkle@nearinfinity.com>",
+  "keywords": ["prototype", "extension"],
+  "homepage": "https://github.com/nearinfinity/node-extension",
+  "repositories": { "type": "git", "url": "https://github.com/nearinfinity/node-extension.git" },
+  "engines": { "node" : ">=0.6.0" },
+  "bugs": { "url": "https://github.com/nearinfinity/node-extension/issues" },
+  "licenses": [ { "type" : "MIT" } ],
+  "maintainers": [
+    { "name": "Jeff Kunkle", "email": "jeff.kunkle@nearinfinity.com" }
+  ],
+  "devDependencies": {
+    "mocha": "~0.12.1",
+    "chai": "~0.3.4"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "main": "./lib/extension.js"
+}
