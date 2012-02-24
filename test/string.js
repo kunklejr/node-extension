@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var strext = require('../../lib/extensions/string');
+var strext = require('../lib/string');
 
 describe('string', function() {
   describe('#contains', function() {

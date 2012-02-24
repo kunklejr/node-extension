@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var objext = require('../../lib/extensions/object');
+var objext = require('../lib/object');
 
 describe('object', function() {
   describe('#isString', function() {
