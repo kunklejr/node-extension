@@ -57,11 +57,11 @@ You don't even have to use all the extensions registered for an object. You can 
 ```javascript
 var str = 'hello world';
 
-ext.use(String.prototype, ['echo']);
+ext.use(String.prototype, ['echo']); // use only the echo extension method
 str.echo(); // prints 'hello world' to the console
 str.cap(); // TypeError: Object has no method 'cap'
 
-ext.use(String.prototype, ['cap'], function() {
+ext.use(String.prototype, ['cap'], function() { // use cap extension within function scope
   str.echo(); // prints 'hello world' to the console
   str.cap(); // prints 'HELLO WORLD' to the console
 });
@@ -127,7 +127,7 @@ __Arguments__
 
 ## Built-in Extensions
 
-Coming soon!
+Coming soon! Please see files in the lib/ directory in the meantime.
 
 ## License
 
