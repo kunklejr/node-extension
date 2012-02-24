@@ -1,8 +1,8 @@
 var expect = require('chai').expect;
 var ext = require('../lib/extension');
 
-describe('extender', function() {
-  describe('#register()', function() {
+describe('extension', function() {
+  describe('#register', function() {
     it('should throw an exception if given a null or undefined object to extend', function(done) {
       expect(ext.register.bind(this, null)).to.throw(Error);
       expect(ext.register.bind(this, undefined)).to.throw(Error);
@@ -47,7 +47,7 @@ describe('extender', function() {
     })
   })
 
-  describe('#find()', function() {
+  describe('#find', function() {
     it('should throw an exception if passed a null or undefined value', function(done) {
       expect(ext.find.bind(this, null)).to.throw(Error);
       expect(ext.find.bind(this, undefined)).to.throw(Error);
