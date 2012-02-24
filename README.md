@@ -1,6 +1,6 @@
 # extension
 
-Framework for selectively adding and extending JavaScript objects
+Framework for selectively extending JavaScript objects
 
 ## Installation
 

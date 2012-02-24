@@ -1,6 +1,6 @@
 {
   "name": "extension",
-  "description": "Framework for selectively adding and extending JavaScript objects.",
+  "description": "Framework for selectively extending JavaScript objects.",
   "version": "0.0.1",
   "author": "Jeff Kunkle <jeff.kunkle@nearinfinity.com>",
   "keywords": ["prototype", "extension"],
