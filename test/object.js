@@ -111,4 +111,36 @@ describe('object', function() {
       done();
     })
   })
+
+  describe('#isEmpty', function() {
+    it('should return true if passed a null or undefined value', function(done) {
+      expect(objext.isEmpty(null)).to.be.true;
+      expect(objext.isEmpty.call(null)).to.be.true;
+      expect(objext.isEmpty(undefined)).to.be.true;
+      expect(objext.isEmpty.call(undefined)).to.be.true;
+      done();
+    })
+
+    it('should return true if the object has no keys', function(done) {
+      expect(objext.isEmpty({})).to.be.true;
+      expect(objext.isEmpty.call({})).to.be.true;
+      expect(objext.isEmpty({ a: 1 })).to.be.false;
+      expect(objext.isEmpty.call({ a: 1 })).to.be.false;
+      done();
+    })
+
+    it('should return false if not null, undefined, an array, or an object containing keys', function(done) {
+      expect(objext.isEmpty(4)).to.be.false;
+      expect(objext.isEmpty(function() {})).to.be.false;
+      done();
+    })
+
+    it('should return true for an empty array', function(done) {
+      expect(objext.isEmpty([])).to.be.true;
+      expect(objext.isEmpty.call([])).to.be.true;
+      expect(objext.isEmpty([1])).to.be.false;
+      expect(objext.isEmpty.call([1])).to.be.false;
+      done();
+    })
+  })
 })

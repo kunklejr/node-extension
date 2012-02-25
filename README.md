@@ -107,14 +107,6 @@ __Arguments__
 * object - the object against which to register extensions
 * extensionObject - Object containing extension properties/method
 
-### find(object)
-
-Find all the extension properties/methods registered against the given object. The return value is an object containing all the extension properties/methods.
-
-__Arguments__
-
-* object - the object against which you wish to find registered extensions
-
 ### use(object [, properties] [, scopeFunction])
 
 Use the specified registered extensions for the given object, optionally only within the scope of a provided function.
@@ -124,6 +116,24 @@ __Arguments__
 * object - the object whose registered extensions you wish to use
 * properties - an optional array of property/method names representing a subset of the registered extensions you'd like to use
 * scopeFunction - an optional function within which the specified registered extensions will be applied. They are removed after the method returns or throws an exception.
+
+### registerAndUse(object, extensionObject)
+
+Register properties of extensionObject as extensions to the object argument and set them up for use. It's the equivalent of calling `#register` followed immediately by `#use` without the scoping function argument.
+
+__Arguments__
+
+* object - the object against which to register extensions
+* extensionObject - Object containing extension properties/method
+
+### find(object)
+
+Find all the extension properties/methods registered against the given object. The return value is an object containing all the extension properties/methods.
+
+__Arguments__
+
+* object - the object against which you wish to find registered extensions
+
 
 ## Built-in Extensions
 

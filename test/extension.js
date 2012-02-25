@@ -174,4 +174,37 @@ describe('extension', function() {
       done();
     })
   })
+
+  describe('#registerAndUse', function() {
+    it('should throw an exception if given a null or undefined object to extend', function(done) {
+      expect(ext.registerAndUse.bind(this, null)).to.throw(Error);
+      expect(ext.registerAndUse.bind(this, undefined)).to.throw(Error);
+      done();
+    })
+
+    it('should throw an exception if given a null or undefined extension object', function(done) {
+      expect(ext.registerAndUse.bind(this, String.prototype, null)).to.throw(Error);
+      expect(ext.registerAndUse.bind(this, String.prototype, undefined)).to.throw(Error);
+      done();
+    })
+
+    it('should do nothing if passed an empty extension object', function(done) {
+      var obj = {};
+      ext.registerAndUse(obj, {});
+      expect(Object.keys(obj)).to.be.empty;
+      done();
+    });
+
+    it('should not have a conflict with keys having the same toString value', function(done) {
+      var obj1 = {};
+      var obj2 = {};
+      ext.registerAndUse(obj1, { a: true });
+      ext.registerAndUse(obj2, { b: true });
+      expect(obj1.a).to.be.true;
+      expect(obj1.b).to.be.undefined;
+      expect(obj2.a).to.be.undefined;
+      expect(obj2.b).to.be.true;
+      done();
+    })
+  })
 })
