@@ -194,6 +194,7 @@ describe('extension', function () {
           keys.push(k);
         }
         expect(keys).to.be.eql([]);
+        expect(obj.hello).not.to.be.undefined;
         done();
       });
     })
