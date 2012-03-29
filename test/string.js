@@ -110,6 +110,11 @@ describe('string', function() {
       done();
     });
 
+    it('should return true if passed a string with multiple matches', function(done) {
+      expect(strext.endsWith('test test', 'test')).to.be.true;
+      done();
+    })
+
     it('should detect a substring at the end of the source string', function(done) {
       expect(strext.endsWith('hola', 'la')).to.be.true;
       expect(strext.endsWith('hola', 'ol')).to.be.false;

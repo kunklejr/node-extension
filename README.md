@@ -38,7 +38,7 @@ var str = 'hello world';
 str.echo(); // prints hello world to the console
 ```
 
-or within the scope of a function
+or within the scope of a function. Please note that any async callbacks within the scope function will **not** see the object extensions.
 
 ```javascript
 // enable extensions registered against 
