@@ -1,7 +1,7 @@
 {
   "name": "extension",
   "description": "Framework for selectively extending JavaScript objects.",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "author": "Jeff Kunkle <jeff.kunkle@nearinfinity.com>",
   "keywords": ["prototype", "extension"],
   "homepage": "https://github.com/nearinfinity/node-extension",
