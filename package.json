@@ -1,14 +1,13 @@
 {
   "name": "extension",
   "description": "Framework for selectively extending JavaScript objects.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Jeff Kunkle <jeff.kunkle@nearinfinity.com>",
   "keywords": ["prototype", "extension"],
-  "homepage": "https://github.com/nearinfinity/node-extension",
-  "repositories": { "type": "git", "url": "https://github.com/nearinfinity/node-extension.git" },
+  "repository": { "type": "git", "url": "https://github.com/nearinfinity/node-extension.git" },
   "engines": { "node" : ">=0.6.0" },
   "bugs": { "url": "https://github.com/nearinfinity/node-extension/issues" },
-  "licenses": [ { "type" : "MIT" } ],
+  "license": "MIT",
   "maintainers": [
     { "name": "Jeff Kunkle", "email": "jeff.kunkle@nearinfinity.com" }
   ],
