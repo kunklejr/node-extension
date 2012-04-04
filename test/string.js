@@ -140,4 +140,31 @@ describe('string', function() {
       done();
     });
   });
+
+  describe('#capitalize', function() {
+    it('should return null if passed a null', function(done) {
+      expect(strext.capitalize(null)).to.be.null;
+      done();
+    });
+
+    it('should do nothing to a zero length string', function(done) {
+      expect(strext.capitalize('')).to.equal('');
+      expect(strext.capitalize.call('')).to.equal('');
+      done();
+    });
+
+    it('should capitalize the only character in a string with length one', function(done) {
+      expect(strext.capitalize('a')).to.equal('A');
+      expect(strext.capitalize.call('a')).to.equal('A');
+      done();
+    });
+
+    it('should only capitalize the first character of a multi-character string', function(done) {
+      expect(strext.capitalize('hello')).to.equal('Hello');
+      expect(strext.capitalize.call('hello')).to.equal('Hello');
+      expect(strext.capitalize('GOODBYE')).to.equal('GOODBYE');
+      expect(strext.capitalize.call('GOODBYE')).to.equal('GOODBYE');
+      done();
+    });
+  });
 });
