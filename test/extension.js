@@ -9,7 +9,7 @@ describe('extension', function () {
       expect(ext.register.bind(this, undefined)).to.
       throw(Error);
       done();
-    })
+    });
 
     it('should throw an exception if given a null or undefined extension object', function (done) {
       expect(ext.register.bind(this, String.prototype, null)).to.
@@ -17,7 +17,7 @@ describe('extension', function () {
       expect(ext.register.bind(this, String.prototype, undefined)).to.
       throw(Error);
       done();
-    })
+    });
 
     it('should do nothing if passed an empty extension object', function (done) {
       var obj = {};
@@ -35,7 +35,7 @@ describe('extension', function () {
       exts = ext.find(obj);
       expect(exts).to.have.keys('hello');
       done();
-    })
+    });
 
     it('should register the extension given valid arguments', function (done) {
       var obj = {};
@@ -48,8 +48,8 @@ describe('extension', function () {
       expect(exts.hello).to.be.true;
       expect(exts.goodbye).to.be.true;
       done();
-    })
-  })
+    });
+  });
 
   describe('#find', function () {
     it('should throw an exception if passed a null or undefined value', function (done) {
@@ -58,12 +58,12 @@ describe('extension', function () {
       expect(ext.find.bind(this, undefined)).to.
       throw(Error);
       done();
-    })
+    });
 
     it('should return undefined if no extensions are registered for the object', function (done) {
       expect(ext.find({})).to.be.undefined;
       done();
-    })
+    });
 
     it('should return the registered extensions as an object', function (done) {
       var obj = {};
@@ -76,8 +76,8 @@ describe('extension', function () {
       expect(exts.hello).to.be.true;
       expect(exts.goodbye).to.be.true;
       done();
-    })
-  })
+    });
+  });
 
   describe('#use', function () {
     it('should throw an exception if given a null or undefined object on which to use extensions', function (done) {
@@ -86,7 +86,7 @@ describe('extension', function () {
       expect(ext.use.bind(this, undefined)).to.
       throw(Error);
       done();
-    })
+    });
 
     it('should permantly apply an extension to an object if not passed a scoping function', function (done) {
       var obj = {};
@@ -97,7 +97,7 @@ describe('extension', function () {
       ext.use(obj, 'hello');
       expect(obj.hello).not.to.be.undefined;
       obj.hello();
-    })
+    });
 
     it('should remove used extensions from an object after the scoping function has executed', function (done) {
       var obj = {};
@@ -112,7 +112,7 @@ describe('extension', function () {
       expect(obj.hello).to.be.undefined;
       expect(run).to.be.true;
       done();
-    })
+    });
 
     it('should not overwrite existing properties', function (done) {
       var obj = {
@@ -126,7 +126,7 @@ describe('extension', function () {
         expect(obj.hello).to.be.true;
       });
       done();
-    })
+    });
 
     it('should allow multiple property extensions to be applied at once within a scope', function (done) {
       var obj = {};
@@ -153,7 +153,7 @@ describe('extension', function () {
       expect(runHello).to.be.true;
       expect(runWorld).to.be.true;
       done();
-    })
+    });
 
     it('should use all registered extensions if none are specified', function (done) {
       var obj = {};
@@ -197,8 +197,8 @@ describe('extension', function () {
         expect(obj.hello).not.to.be.undefined;
         done();
       });
-    })
-  })
+    });
+  });
 
   describe('#registerAndUse', function () {
     it('should throw an exception if given a null or undefined object to extend', function (done) {
@@ -207,7 +207,7 @@ describe('extension', function () {
       expect(ext.registerAndUse.bind(this, undefined)).to.
       throw(Error);
       done();
-    })
+    });
 
     it('should throw an exception if given a null or undefined extension object', function (done) {
       expect(ext.registerAndUse.bind(this, String.prototype, null)).to.
@@ -215,7 +215,7 @@ describe('extension', function () {
       expect(ext.registerAndUse.bind(this, String.prototype, undefined)).to.
       throw(Error);
       done();
-    })
+    });
 
     it('should do nothing if passed an empty extension object', function (done) {
       var obj = {};
@@ -234,6 +234,6 @@ describe('extension', function () {
       expect(obj2.a).to.be.undefined;
       expect(obj2.b).to.be.true;
       done();
-    })
-  })
-})
+    });
+  });
+});
