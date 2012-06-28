@@ -167,4 +167,62 @@ describe('string', function() {
       done();
     });
   });
+
+  describe('#decapitalize', function() {
+    it('should return null if passed a null', function(done) {
+      expect(strext.decapitalize(null)).to.be.null;
+      done();
+    });
+
+    it('should do nothing to a zero length string', function(done) {
+      expect(strext.decapitalize('')).to.equal('');
+      expect(strext.decapitalize.call('')).to.equal('');
+      done();
+    });
+
+    it('should capitalize the only character in a string with length one', function(done) {
+      expect(strext.decapitalize('A')).to.equal('a');
+      expect(strext.decapitalize.call('A')).to.equal('a');
+      done();
+    });
+
+    it('should only capitalize the first character of a multi-character string', function(done) {
+      expect(strext.decapitalize('Hello')).to.equal('hello');
+      expect(strext.decapitalize.call('Hello')).to.equal('hello');
+      expect(strext.decapitalize('GOODBYE')).to.equal('gOODBYE');
+      expect(strext.decapitalize.call('GOODBYE')).to.equal('gOODBYE');
+      done();
+    });
+  });
+
+  describe('#camelize', function() {
+    it('should return null if passed a null', function(done) {
+      expect(strext.camelize(null)).to.be.null;
+      done();
+    });
+
+    it('should do nothing to a zero length string', function(done) {
+      expect(strext.camelize('')).to.equal('');
+      expect(strext.camelize.call('')).to.equal('');
+      done();
+    });
+
+    it('should lowercase the only character in a string with length one', function(done) {
+      expect(strext.camelize('A')).to.equal('a');
+      expect(strext.camelize.call('a')).to.equal('a');
+      done();
+    });
+
+    it('should camelize a string separated by dashes', function(done) {
+      expect(strext.camelize('prop-name')).to.equal('propName');
+      expect(strext.camelize.call('Prop-NAME')).to.equal('propNAME');
+      done();
+    });
+
+    it('should camelize a string separated by underscores', function(done) {
+      expect(strext.camelize('prop__name')).to.equal('propName');
+      expect(strext.camelize.call('Prop_NAME')).to.equal('propNAME');
+      done();
+    });
+  });
 });
