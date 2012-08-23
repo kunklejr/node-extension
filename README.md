@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/nearinfinity/node-extension.png)](http://travis-ci.org/nearinfinity/node-extension)
 # extension
 
 Framework for selectively extending JavaScript objects
